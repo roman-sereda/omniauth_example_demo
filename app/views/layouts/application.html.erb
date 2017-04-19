@@ -9,6 +9,22 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+      <%= value %>
+    <% end %>
     <%= yield %>
+
+    <% current_user.each do |current_user|%>
+      <% if current_user[:user] %>
+        <ul>
+          <li><%= image_tag current_user[:user][:image_url], alt: current_user[:user][:name] %></li>
+          <li><%= link_to 'Log out', logout_path, method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul class = ''>
+          <li><%= link_to "#{current_user[:type]}", "auth/#{current_user[:type]}", {type: "#{current_user[:type]}"} %></li>
+        </ul>
+      <% end %>
+    <% end %>
   </body>
 </html>

@@ -1,0 +1,14 @@
+<% current_user.each do | current_user |%>
+  <% if current_user[:user] %>
+    <ul>
+      <li><%= current_user[:user][:name] %></li>
+      <li><%= current_user[:user][:provider] %></li>
+      <li><%= current_user[:user][:uid] %></li>
+      <li><%= current_user[:user][:location] %></li>
+      <li><%= current_user[:user][:image_url] %></li>
+      <li><%= current_user[:user][:url] %></li>
+    </ul>
+  <% else %>
+    <%= render 'welcome'%>
+  <% end %>
+<% end %>

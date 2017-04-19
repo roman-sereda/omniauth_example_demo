@@ -7,11 +7,10 @@ class User < ActiveRecord::Base
     user.image_url = auth_hash['info']['image']
 
     case type
-    when 'facebook'
-      user.url = auth_hash['info']['urls'][user.provider.capitalize]
-    when 'google'
+    when 'facebook'  'twitter'
       user.url = auth_hash['info']['urls'][user.provider.capitalize]
     end
+    
     p 'ok'
     user.save!
     user

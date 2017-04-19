@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
 
 gem 'rack-cors', :require => 'rack/cors'
 

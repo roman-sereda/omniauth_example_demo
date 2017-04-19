@@ -15,11 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if current_user
-      session.delete(:facebook)
-      session.delete(:google_oauth2)
-      flash[:success] = 'See you'
-    end
+    session.delete(params['type'])
     redirect_to root_path
   end
 

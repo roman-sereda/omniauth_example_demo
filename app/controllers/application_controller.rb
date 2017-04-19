@@ -3,12 +3,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    [
-      {user: User.find_by(id: session[:facebook]), type: 'facebook'},
-      {user: User.find_by(id: session[:google_oauth2]), type: 'google_oauth2'},
-      {user: User.find_by(id: session[:twitter]), type: 'twitter'},
-      {user: User.find_by(id: session[:github]), type: 'github'}
-    ]
+    @current_user ||= []
+    ['facebook', 'google_oauth2', 'twitter', 'github'].each_with_index do |provider, index|
+      @current_user[index] = {user: get_provider_info(provider), type: provider}
+    end
+
+    return @current_user
+  end
+
+  private
+
+  def get_provider_info(provider)
+    session[provider] ? User.find_by(id: session[provider]).serializable_hash : nil
   end
 
   helper_method :current_user

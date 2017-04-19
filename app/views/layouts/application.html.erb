@@ -9,29 +9,31 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= value %>
-    <% end %>
+
+    <h1 class = 'title'>OmniAuth Demo</h1>
 
     <% current_user.each do |current_user|%>
-      <% if current_user[:user] %>
-        <ul class = 'session' >
-          <ul>
-            <li><%= current_user[:user][:name] %></li>
-            <li><%= current_user[:user][:provider] %></li>
-            <li><%= current_user[:user][:uid] %></li>
-            <li><%= current_user[:user][:location] %></li>
-            <li><%= current_user[:user][:image_url] %></li>
-            <li><%= current_user[:user][:url] %></li>
-          </ul>
-          <li><%= image_tag current_user[:user][:image_url], alt: current_user[:user][:name] %></li>
-          <li><%= link_to 'Log out', logout_path(type: "#{current_user[:type]}"), method: :delete %></li>
-        </ul>
-      <% else %>
-        <ul class = ''>
-          <li><%= link_to "#{current_user[:type]}", "auth/#{current_user[:type]}" %></li>
-        </ul>
-      <% end %>
+      <div class = 'session' >
+        <% if current_user[:user] %>
+            <div class = 'user-info-wrapper cell'>
+              <% current_user[:user].each do |k,v| %>
+                <div class = 'rrow'>
+                  <span class = 'table-cell'><%= "#{k}:" %></span>
+                  <span class = 'table-cell full'><%= "#{v}" %></span>
+                </div>
+              <% end %>
+            </div>
+            <div class = 'space'></div>
+            <div class = 'user-avatar-wrapper cell'>
+              <%= image_tag current_user[:user]['image_url'], alt: current_user[:user]['name'], class: 'avatar' %>
+              <br>
+              <%= link_to 'Log out', logout_path(type: "#{current_user[:type]}"), method: :delete %>
+            </div>
+
+        <% else %>
+            <div class = 'user-info-wrapper cell' ><%= link_to "Login via #{current_user[:type]}", "auth/#{current_user[:type]}" %></div>
+        <% end %>
+      </div>
     <% end %>
   </body>
 </html>

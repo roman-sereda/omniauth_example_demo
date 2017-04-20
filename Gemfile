@@ -16,6 +16,8 @@ gem 'puma', '~> 3.7'
 gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'

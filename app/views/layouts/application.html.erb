@@ -3,7 +3,6 @@
   <head>
     <title>Omniauth</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -31,7 +30,7 @@
             </div>
 
         <% else %>
-            <div class = 'user-info-wrapper cell' ><%= link_to "Login via #{current_user[:type]}", "auth/#{current_user[:type]}" %></div>
+            <div class = 'user-info-wrapper cell' ><%= link_to "Login via #{current_user[:type]}", "auth/#{current_user[:type]}", method: :post %></div>
         <% end %>
       </div>
     <% end %>

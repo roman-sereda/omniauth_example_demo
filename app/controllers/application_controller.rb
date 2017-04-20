@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  def index
+    render 'layouts/application'
+  end
+
   def current_user
     @current_user ||= []
     ['facebook', 'google_oauth2', 'twitter', 'github'].each_with_index do |provider, index|
